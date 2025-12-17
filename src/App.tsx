@@ -18,6 +18,7 @@ import { PatientDashboard } from "@/features/patient/dashboard/PatientDashboard"
 import { HealthStatsPage } from "@/features/patient/health-stats/HealthStatsPage";
 import { MedicationsPage } from "@/features/patient/medications/MedicationsPage";
 import { AppointmentsPage } from "@/features/patient/appointments/AppointmentsPage";
+import { PatientMessagesPage } from "@/features/patient/messages/PatientMessagesPage";
 import { NotesPage } from "@/features/patient/notes/NotesPage";
 
 // Admin Features
@@ -60,6 +61,11 @@ const App = () => (
             <Route path="/dashboard/appointments" element={
               <ProtectedRoute requiredRole="patient">
                 <AppointmentsPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/dashboard/messages" element={
+              <ProtectedRoute requiredRole="patient">
+                <PatientMessagesPage />
               </ProtectedRoute>
             } />
             <Route path="/dashboard/notes" element={

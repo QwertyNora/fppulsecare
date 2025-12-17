@@ -57,18 +57,31 @@ export interface HealthStat {
   status: 'normal' | 'warning' | 'critical';
 }
 
+export interface Doctor {
+  id: string;
+  name: string;
+  specialty: string;
+  email: string;
+}
+
 export interface Message {
   id: string;
   patientId: string;
   patientName: string;
+  doctorId?: string;
+  doctorName?: string;
   subject: string;
   content: string;
   date: string;
   read: boolean;
+  fromPatient: boolean;
 }
 
 export interface Note {
   id: string;
+  appointmentId: string;
+  patientId: string;
+  doctorName: string;
   title: string;
   content: string;
   date: string;
@@ -309,65 +322,108 @@ export const mockHealthStats: HealthStat[] = [
   },
 ];
 
+// Mock Doctors
+export const mockDoctors: Doctor[] = [
+  {
+    id: 'doctor-1',
+    name: 'Dr. Sarah Johnson',
+    specialty: 'Internal Medicine',
+    email: 'sarah.johnson@pulsecare.com',
+  },
+  {
+    id: 'doctor-2',
+    name: 'Dr. Michael Chen',
+    specialty: 'Cardiology',
+    email: 'michael.chen@pulsecare.com',
+  },
+  {
+    id: 'doctor-3',
+    name: 'Dr. Emily Roberts',
+    specialty: 'Endocrinology',
+    email: 'emily.roberts@pulsecare.com',
+  },
+];
+
 // Mock Messages
 export const mockMessages: Message[] = [
   {
     id: 'msg-1',
     patientId: 'patient-1',
     patientName: 'John Smith',
+    doctorId: 'doctor-1',
+    doctorName: 'Dr. Sarah Johnson',
     subject: 'Question about medication timing',
     content: 'Hi Dr. Johnson, I wanted to ask about the best time to take my Metformin. Should I take it before or after meals?',
     date: '2024-12-16T10:30:00',
     read: false,
+    fromPatient: true,
   },
   {
     id: 'msg-2',
     patientId: 'patient-2',
     patientName: 'Emily Davis',
+    doctorId: 'doctor-2',
+    doctorName: 'Dr. Michael Chen',
     subject: 'Inhaler refill request',
     content: 'Hello, I need a refill on my albuterol inhaler. My current one is almost empty.',
     date: '2024-12-15T14:22:00',
     read: true,
+    fromPatient: true,
   },
   {
     id: 'msg-3',
     patientId: 'patient-3',
     patientName: 'Robert Wilson',
+    doctorId: 'doctor-1',
+    doctorName: 'Dr. Sarah Johnson',
     subject: 'Lab results inquiry',
     content: 'Dr. Johnson, I was wondering if my recent cholesterol test results are available yet?',
     date: '2024-12-15T09:15:00',
     read: false,
+    fromPatient: true,
   },
   {
     id: 'msg-4',
     patientId: 'patient-4',
     patientName: 'Maria Garcia',
+    doctorId: 'doctor-3',
+    doctorName: 'Dr. Emily Roberts',
     subject: 'Appointment rescheduling',
     content: 'I need to reschedule my appointment on December 23rd. Is there availability on the 26th instead?',
     date: '2024-12-14T16:45:00',
     read: true,
+    fromPatient: true,
   },
 ];
 
-// Mock Notes
+// Mock Notes (from appointments/doctors)
 export const mockNotes: Note[] = [
   {
     id: 'note-1',
-    title: 'Morning routine',
-    content: 'Remember to check blood sugar before breakfast. Feeling better with the new medication schedule.',
-    date: '2024-12-16',
-  },
-  {
-    id: 'note-2',
-    title: 'Exercise log',
-    content: 'Walked 30 minutes today. Blood pressure was lower than usual after exercise.',
+    appointmentId: 'apt-1',
+    patientId: 'patient-1',
+    doctorName: 'Dr. Sarah Johnson',
+    title: 'Quarterly Checkup Summary',
+    content: 'Patient is managing diabetes well. Blood sugar levels have stabilized. Continue current medication. Recommend increasing daily walks to 45 minutes.',
     date: '2024-12-15',
   },
   {
+    id: 'note-2',
+    appointmentId: 'apt-5',
+    patientId: 'patient-1',
+    doctorName: 'Dr. Michael Chen',
+    title: 'Diabetes Management Review',
+    content: 'HbA1c levels improved from last visit. Blood pressure slightly elevated - monitor closely. Consider dietary sodium reduction.',
+    date: '2024-12-10',
+  },
+  {
     id: 'note-3',
-    title: 'Diet changes',
-    content: 'Started reducing sodium intake. Switched to low-sodium alternatives for most foods.',
-    date: '2024-12-14',
+    appointmentId: 'apt-1',
+    patientId: 'patient-1',
+    doctorName: 'Dr. Sarah Johnson',
+    title: 'Previous Follow-up Notes',
+    content: 'Discussed lifestyle modifications. Patient committed to reducing processed food intake. Scheduled lab work for cholesterol panel.',
+    date: '2024-11-20',
   },
 ];
 
