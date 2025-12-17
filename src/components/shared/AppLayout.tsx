@@ -13,7 +13,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import {
-  Heart,
   Menu,
   Home,
   Activity,
@@ -26,6 +25,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { PulseLogo } from './PulseLogo';
 
 interface NavItem {
   label: string;
@@ -75,11 +75,8 @@ function Sidebar({ navItems }: { navItems: NavItem[] }) {
   return (
     <aside className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 bg-sidebar border-r border-sidebar-border">
       {/* Logo */}
-      <div className="flex items-center gap-3 px-6 py-5 border-b border-sidebar-border">
-        <div className="p-2 rounded-xl primary-gradient shadow-sm">
-          <Heart className="h-5 w-5 text-primary-foreground" />
-        </div>
-        <span className="text-xl font-bold text-sidebar-foreground">PulseCare</span>
+      <div className="px-6 py-5 border-b border-sidebar-border">
+        <PulseLogo size="sm" />
       </div>
       
       {/* Navigation */}
@@ -111,11 +108,8 @@ function MobileNav({ navItems }: { navItems: NavItem[] }) {
       </SheetTrigger>
       <SheetContent side="left" className="w-72 p-0 bg-sidebar">
         {/* Logo */}
-        <div className="flex items-center gap-3 px-6 py-5 border-b border-sidebar-border">
-          <div className="p-2 rounded-xl primary-gradient">
-            <Heart className="h-5 w-5 text-primary-foreground" />
-          </div>
-          <span className="text-xl font-bold text-sidebar-foreground">PulseCare</span>
+        <div className="px-6 py-5 border-b border-sidebar-border">
+          <PulseLogo size="sm" />
         </div>
         
         {/* Navigation */}
