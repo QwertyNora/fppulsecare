@@ -1,4 +1,5 @@
 // Mock API functions that simulate async data fetching
+// Mock API functions that simulate async data fetching
 import {
   mockUsers,
   mockPatients,
@@ -8,6 +9,7 @@ import {
   mockMessages,
   mockNotes,
   mockHealthTips,
+  mockDoctors,
   type User,
   type Patient,
   type Medication,
@@ -16,6 +18,7 @@ import {
   type Message,
   type Note,
   type HealthTip,
+  type Doctor,
 } from './mockData';
 
 // Simulate network delay
@@ -166,11 +169,34 @@ export const healthStatsApi = {
   },
 };
 
+// Doctors API
+export const doctorsApi = {
+  getAll: async (): Promise<Doctor[]> => {
+    await delay(300);
+    return mockDoctors;
+  },
+};
+
 // Messages API
 export const messagesApi = {
   getAll: async (): Promise<Message[]> => {
     await delay(300);
     return mockMessages;
+  },
+
+  getByPatientId: async (patientId: string): Promise<Message[]> => {
+    await delay(300);
+    return mockMessages.filter(m => m.patientId === patientId);
+  },
+  
+  create: async (data: Omit<Message, 'id'>): Promise<Message> => {
+    await delay(300);
+    const newMessage: Message = {
+      ...data,
+      id: `msg-${Date.now()}`,
+    };
+    mockMessages.push(newMessage);
+    return newMessage;
   },
   
   markAsRead: async (id: string): Promise<void> => {
@@ -187,39 +213,21 @@ export const messagesApi = {
   },
 };
 
-// Notes API
+// Notes API (read-only for patients - from appointments)
 export const notesApi = {
   getAll: async (): Promise<Note[]> => {
     await delay(300);
     return mockNotes;
   },
-  
-  create: async (data: Omit<Note, 'id'>): Promise<Note> => {
+
+  getByPatientId: async (patientId: string): Promise<Note[]> => {
     await delay(300);
-    const newNote: Note = {
-      ...data,
-      id: `note-${Date.now()}`,
-    };
-    mockNotes.push(newNote);
-    return newNote;
+    return mockNotes.filter(n => n.patientId === patientId);
   },
   
-  update: async (id: string, data: Partial<Note>): Promise<Note> => {
-    await delay(300);
-    const index = mockNotes.findIndex(n => n.id === id);
-    if (index !== -1) {
-      mockNotes[index] = { ...mockNotes[index], ...data };
-      return mockNotes[index];
-    }
-    throw new Error('Note not found');
-  },
-  
-  delete: async (id: string): Promise<void> => {
+  getByAppointmentId: async (appointmentId: string): Promise<Note[]> => {
     await delay(200);
-    const index = mockNotes.findIndex(n => n.id === id);
-    if (index !== -1) {
-      mockNotes.splice(index, 1);
-    }
+    return mockNotes.filter(n => n.appointmentId === appointmentId);
   },
 };
 

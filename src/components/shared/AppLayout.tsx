@@ -38,6 +38,7 @@ const patientNavItems: NavItem[] = [
   { label: 'Health Stats', href: '/dashboard/health-stats', icon: <Activity className="h-5 w-5" /> },
   { label: 'Medications', href: '/dashboard/medications', icon: <Pill className="h-5 w-5" /> },
   { label: 'Appointments', href: '/dashboard/appointments', icon: <Calendar className="h-5 w-5" /> },
+  { label: 'Messages', href: '/dashboard/messages', icon: <MessageSquare className="h-5 w-5" /> },
   { label: 'Notes', href: '/dashboard/notes', icon: <StickyNote className="h-5 w-5" /> },
 ];
 
