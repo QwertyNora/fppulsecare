@@ -6,7 +6,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Heart, Loader2, AlertCircle } from 'lucide-react';
+import { Loader2, AlertCircle } from 'lucide-react';
+import { PulseLogo } from '@/components/shared/PulseLogo';
 
 export function LoginPage() {
   const [email, setEmail] = useState('');
@@ -65,11 +66,9 @@ export function LoginPage() {
     <div className="min-h-screen flex items-center justify-center hero-gradient p-4">
       <div className="w-full max-w-md animate-slide-up">
         {/* Logo */}
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="p-3 rounded-2xl primary-gradient shadow-glow">
-            <Heart className="h-8 w-8 text-primary-foreground" />
-          </div>
-          <div>
+        <div className="flex flex-col items-center gap-2 mb-8">
+          <PulseLogo size="lg" showText={false} />
+          <div className="text-center">
             <h1 className="text-3xl font-bold text-foreground">PulseCare</h1>
             <p className="text-sm text-muted-foreground">Your Health, Our Priority</p>
           </div>
