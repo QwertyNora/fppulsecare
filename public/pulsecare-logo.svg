@@ -1,0 +1,27 @@
+<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Heart shape fill -->
+  <path
+    d="M20 35C20 35 6 25 6 14C6 10 9 6 14 6C17 6 19 8 20 10C21 8 23 6 26 6C31 6 34 10 34 14C34 25 20 35 20 35Z"
+    fill="#60a5fa"
+    fill-opacity="0.3"
+  />
+  
+  <!-- EKG Line -->
+  <path
+    d="M4 20H10L12 16L14 24L16 12L18 28L20 8L22 32L24 14L26 22L28 18H36"
+    stroke="#ffffff"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  
+  <!-- Heart outline -->
+  <path
+    d="M20 35C20 35 6 25 6 14C6 10 9 6 14 6C17 6 19 8 20 10C21 8 23 6 26 6C31 6 34 10 34 14C34 25 20 35 20 35Z"
+    stroke="#ffffff"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+</svg>
